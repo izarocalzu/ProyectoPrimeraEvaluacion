@@ -12,12 +12,15 @@ namespace ProyectoPrimeraEvaluacion.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {
-    [ObservableProperty] private string _greeting = "Welcome to Avalonia!";
     [ObservableProperty] private string imageUrl;
     [ObservableProperty] private AvaloniaList<Usuario> listaUsuarios=new();
     [ObservableProperty] private AvaloniaList<ProductModel> listaProductos=new();
+
+    [ObservableProperty] private bool isLogeado = false;
+    [ObservableProperty] private NavigationService navigationService=new();
     
     private APIService apiService { get; set; } = new();
+    
 
     [RelayCommand]
     public async Task CrearProductoAsync()
@@ -104,13 +107,19 @@ public partial class MainViewModel : ObservableObject
         if (user == null)
         {
             var authservice = new GoogleAuthService();
-            var usuario = await authservice.LoginAsync(user);
+            Usuario usuario = await authservice.LoginAsync(new Usuario());
+            ImageUrl = usuario.ImageUrl;
+            ListaUsuarios = await new DBService().ObtenerTodosLosUsuarios();
+            IsLogeado = true;
+            
+            
         }
         else
         {
             var authservice = new GoogleAuthService();
-            Usuario usuario = await authservice.LoginAsync(new Usuario());
-            ImageUrl = usuario.ImageUrl;
+            var usuario = await authservice.LoginAsync(user);
+            ListaUsuarios = await new DBService().ObtenerTodosLosUsuarios();
+            IsLogeado = true;
         }
     }
 }

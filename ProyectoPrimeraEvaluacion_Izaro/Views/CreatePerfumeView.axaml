@@ -43,7 +43,7 @@
                       HorizontalAlignment="Center"
                       Margin="5"/>
             
-            <CheckBox Content=""
+            <CheckBox Content="Edición limitada"
                       HorizontalAlignment="Center"
                       Margin="5"/>
             

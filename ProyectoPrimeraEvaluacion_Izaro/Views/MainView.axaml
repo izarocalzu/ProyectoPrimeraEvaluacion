@@ -2,13 +2,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="clr-namespace:ProyectoPrimeraEvaluacion_Izaro.ViewModels"
              xmlns:fa="using:FluentAvalonia.UI.Controls"
+             xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
              xmlns:viewModels="clr-namespace:ProyectoPrimeraEvaluacion.ViewModels"
              x:Class="ProyectoPrimeraEvaluacion_Izaro.Views.MainView"
              x:DataType="viewModels:MainViewModel">
   
     <Grid>
         
-        <Grid 
+        <Grid IsVisible="{Binding !IsLogeado}"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Background="{DynamicResource ApplicationBackgroundBrush}">
@@ -19,14 +20,15 @@
                 
                 <TextBlock Text="Últimos usuarios" Margin="0,0,0,10" HorizontalAlignment="Center"/>
                 
-                <ListBox Height="200" Width="250"
+                <ListBox ItemsSource="{Binding ListaUsuarios}"
+                         Height="200" Width="250"
                          Margin="0,0,0,0" Name="ListBoxUsuarios">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <Image/>
-                                <TextBlock Text=""/>
-                                <TextBlock Text=""/>
+                                <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl}"/>
+                                <TextBlock Text="{Binding Nombre}"/>
+                                <TextBlock Text="{Binding Email}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -42,6 +44,14 @@
             </StackPanel>
         
         </Grid>
+    
+        <fa:NavigationView PaneDisplayMode="Left"
+                           IsVisible="{Binding IsLogeado}"
+                           PaneTitle="Menú"
+                           SelectedItem="{Binding NavigationService.SelectedMenuItem}"
+                           MenuItemsSource="{Binding NavigationService.Items}">
+            <ContentControl Content="{Binding NavigationService.CurrentView}" />
+        </fa:NavigationView>
         
     </Grid>
     
