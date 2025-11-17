@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RepasoApp01.Data;
+namespace ProyectoPrimeraEvaluacion_Izaro.Data;
 
 public class Usuario
 {

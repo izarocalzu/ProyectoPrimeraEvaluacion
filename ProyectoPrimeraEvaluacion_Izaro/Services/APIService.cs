@@ -4,9 +4,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Avalonia.Collections;
 using Newtonsoft.Json;
-using RepasoApp01.Models;
+using ProyectoPrimeraEvaluacion_Izaro.Models;
 
-namespace RepasoApp01.Services;
+namespace ProyectoPrimeraEvaluacion_Izaro.Services;
 
 public class APIService
 {

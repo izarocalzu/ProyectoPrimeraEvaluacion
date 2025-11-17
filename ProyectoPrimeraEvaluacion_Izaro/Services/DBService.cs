@@ -1,9 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Avalonia.Collections;
 using Microsoft.EntityFrameworkCore;
-using RepasoApp01.Data;
+using ProyectoPrimeraEvaluacion_Izaro.Data;
 
-namespace RepasoApp01.Services;
+
+namespace ProyectoPrimeraEvaluacion_Izaro.Services;
 
 public class DBService
 {

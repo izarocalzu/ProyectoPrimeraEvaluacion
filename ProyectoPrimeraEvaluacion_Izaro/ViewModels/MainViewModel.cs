@@ -1,84 +1,116 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Avalonia.Collections;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProyectoPrimeraEvaluacion.Services;
+using ProyectoPrimeraEvaluacion_Izaro.Data;
+using ProyectoPrimeraEvaluacion_Izaro.Models;
+using ProyectoPrimeraEvaluacion_Izaro.Services;
 
 namespace ProyectoPrimeraEvaluacion.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {
-    // Propiedad que controla la visibilidad del menú/overlay de Login
-    [ObservableProperty]
-    private bool _isUserLoggedIn = false; 
-
-    public NavigationService NavigationService { get; }
-    public IAsyncRelayCommand GoogleAuthCommand { get; }
+    [ObservableProperty] private string _greeting = "Welcome to Avalonia!";
+    [ObservableProperty] private string imageUrl;
+    [ObservableProperty] private AvaloniaList<Usuario> listaUsuarios=new();
+    [ObservableProperty] private AvaloniaList<ProductModel> listaProductos=new();
     
-    // Constructor inyectado desde App.axaml.cs (como ya lo tienes)
-    public MainViewModel(NavigationService navigationService)
+    private APIService apiService { get; set; } = new();
+
+    [RelayCommand]
+    public async Task CrearProductoAsync()
     {
-        NavigationService = navigationService;
-        GoogleAuthCommand = new AsyncRelayCommand(ExecuteGoogleAuthAsync);
-        
-        // Opcional: Si quieres empezar en la vista de bienvenida en el diseñador
-        // if (Design.IsDesignMode)
-        // {
-        //     IsUserLoggedIn = true;
-        //     NavigationService.NavigateTo(NavigationService.HOME_VIEW);
-        // }
+        var p = new ProductModel()
+        {
+            
+        };
+        await apiService.CrearProducto(p);
     }
     
-    // Este método simula la lógica de autenticación real
-    // En tu código REAL, aquí llamarías a tu IGoogleAuthService
-    private async Task<bool> AuthTest()
+    [RelayCommand]
+    public async Task ModificarProductoAsync(ProductModel p)
     {
-        // === ZONA DE AUTENTICACIÓN REAL ===
-        
-        // Simulación de una operación asíncrona de red/BD
-        await Task.Delay(500); 
-
-        // Puedes forzar una excepción para probar el 'catch'
-        // if (DateTime.Now.Second % 2 == 0) throw new Exception("Error de conexión simulado.");
-        
-        return true; // Reemplaza esto con el resultado de tu LoginWithGoogleAsync()
-    }
-
-
-    private async Task ExecuteGoogleAuthAsync()
-    {
-        bool loginExitoso = false;
-        
+        if (p == null)
+        {
+            Console.WriteLine("No has seleccionado nada.");
+            return;
+        }
         try
         {
-            // 1. Ejecutar la lógica de autenticación
-            loginExitoso = await AuthTest(); 
-
-            if (loginExitoso)
+            p.Code = "REF MODIFICADA";
+            bool okModificar = await apiService.ModificarProducto(p);
+            if (okModificar)
             {
-                // 2. Si es exitoso, actualiza el estado (esto oculta la capa de login)
-                IsUserLoggedIn = true; 
-                
-                // 3. Navega a la Vista 2 (Inicio/Bienvenida)
-                // Si esta línea falla, la excepción será capturada.
-                NavigationService.NavigateTo(NavigationService.HOME_VIEW); 
-            }
-            else
-            {
-                Console.WriteLine("Login fallido. Credenciales inválidas.");
+                Console.WriteLine("Producto modificado");
+                await ObtenerProductosAsync();
             }
         }
         catch (Exception ex)
         {
-            // ***** ESTO EVITA QUE LA APLICACIÓN SE CIERRE *****
-            
-            // Si llega aquí, significa que la llamada a AuthTest() o NavigateTo() falló.
-            Console.WriteLine($"Error crítico durante la operación: {ex.Message}");
-            
-            // Opcional: Mostrar un diálogo de error al usuario.
-            
-            // Asegurarse de que el usuario no esté logueado
-            IsUserLoggedIn = false;
+            Console.WriteLine("Error al actualizar producto. " + ex.Message);
+        }
+    }
+
+    [RelayCommand]
+    public async Task EliminarProductoAsync(ProductModel p)
+    {
+        if (p == null)
+        {
+            Console.WriteLine("No has seleccionado nada.");
+            return;
+        }
+
+        try
+        {
+            bool okEliminar = await apiService.EliminarProducto(p);
+            if (okEliminar)
+            {
+                Console.WriteLine("Producto modificado");
+                await ObtenerProductosAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error al eliminar producto. " + ex.Message);
+        }
+    }
+
+    [RelayCommand]
+    public async Task ObtenerProductosAsync()
+    {
+        ListaProductos = await apiService.ObtenerProductos();
+    }
+
+    [RelayCommand]
+    public async Task ObtenerUsuariosAsync()
+    {
+        ListaUsuarios = await new DBService().ObtenerTodosLosUsuarios();
+    }
+
+    [RelayCommand]
+    public async Task RegisterUserAsync()
+    {
+        var authservice = new GoogleAuthService();
+        Usuario usuario = await authservice.LoginAsync(new Usuario());
+        ImageUrl = usuario.ImageUrl;
+
+    }
+
+    [RelayCommand]
+    public async Task LoginUsuarioAsync(Usuario user)
+    {
+        if (user == null)
+        {
+            var authservice = new GoogleAuthService();
+            var usuario = await authservice.LoginAsync(user);
+        }
+        else
+        {
+            var authservice = new GoogleAuthService();
+            Usuario usuario = await authservice.LoginAsync(new Usuario());
+            ImageUrl = usuario.ImageUrl;
         }
     }
 }

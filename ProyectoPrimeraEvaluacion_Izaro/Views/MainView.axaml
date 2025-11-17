@@ -9,7 +9,6 @@
     <Grid>
         
         <Grid 
-            IsVisible="{Binding !IsUserLoggedIn}" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Background="{DynamicResource ApplicationBackgroundBrush}">
@@ -34,7 +33,8 @@
                 </ListBox>
                 
                 <Button Content="Login / Registro"
-                        Command="{Binding GoogleAuthCommand}"
+                        Command="{Binding LoginUsuarioCommand}"
+                        CommandParameter="{Binding ElementName= ListBoxUsuarios, Path=SelectedItem}"
                         HorizontalAlignment="Center"
                         Margin="20"
                 />
@@ -42,17 +42,6 @@
             </StackPanel>
         
         </Grid>
-        
-        <fa:NavigationView 
-            IsVisible="{Binding IsUserLoggedIn}" 
-            PaneDisplayMode="Left" 
-            CompactPaneLength="48"
-            OpenPaneLength="256"
-            SelectedItem="{Binding NavigationService.SelectedMenuItem}"
-            MenuItemsSource="{Binding NavigationService.Items}"
-        >
-            <ContentControl Content="{Binding NavigationService.CurrentView}"/>
-        </fa:NavigationView>
         
     </Grid>
     

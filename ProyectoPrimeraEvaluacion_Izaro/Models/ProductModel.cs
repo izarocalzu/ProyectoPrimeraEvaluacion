@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace RepasoApp01.Models;
+namespace ProyectoPrimeraEvaluacion_Izaro.Models;
 
 public class ProductModel
 {

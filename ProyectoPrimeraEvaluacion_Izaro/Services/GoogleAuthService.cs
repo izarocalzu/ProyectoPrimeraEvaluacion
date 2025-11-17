@@ -4,9 +4,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Duende.IdentityModel.Jwk;
 using Duende.IdentityModel.OidcClient;
-using RepasoApp01.Data;
+using ProyectoPrimeraEvaluacion_Izaro.Data;
 
-namespace RepasoApp01.Services;
+namespace ProyectoPrimeraEvaluacion_Izaro.Services;
 
 public class GoogleAuthService
 {

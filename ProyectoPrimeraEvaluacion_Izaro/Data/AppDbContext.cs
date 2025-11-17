@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace RepasoApp01.Data;
+namespace ProyectoPrimeraEvaluacion_Izaro.Data;
 
 public class AppDbContext : DbContext
 {
