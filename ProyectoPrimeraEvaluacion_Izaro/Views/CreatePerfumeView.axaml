@@ -1,0 +1,74 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:ProyectoPrimeraEvaluacion.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ProyectoPrimeraEvaluacion.Views.CreatePerfumeView"
+             x:DataType="vm:CreatePerfumeViewModel">
+    
+    <Design.DataContext>
+        <vm:CreatePerfumeViewModel />
+    </Design.DataContext>
+    
+    <!--<UserControl.Resources>
+        <SolidColorBrush x:Key="" Color="#355070"/>
+        <SolidColorBrush x:Key="" Color="#6D597A"/>
+        <SolidColorBrush x:Key="" Color="#B56576"/>
+        <SolidColorBrush x:Key="" Color="#E56B6F"/>
+        <SolidColorBrush x:Key="" Color="#EAAC8B"/>
+    </UserControl.Resources>-->
+    
+    <Grid RowDefinitions="300,*">
+        
+        <StackPanel Grid.Row="0" Margin="20">
+            
+            <TextBlock Text="NUEVO PERFUME"
+                       FontSize="20"
+                       HorizontalAlignment="Center"
+                       Margin="0,5,0,10"/>
+            
+            <TextBox Width="200" Height="35"
+                     Watermark="Código"
+                     HorizontalAlignment="Center"
+                     Margin="5"/>
+            
+            <TextBox Width="200" Height="65"
+                     Watermark="Descripción"
+                     HorizontalAlignment="Center"
+                     Margin="5"/>
+            
+            <ComboBox Width="200" Height="35"
+                      PlaceholderText="Marca"
+                      HorizontalAlignment="Center"
+                      Margin="5"/>
+            
+            <CheckBox Content=""
+                      HorizontalAlignment="Center"
+                      Margin="5"/>
+            
+            <CalendarDatePicker Width="200" Height="35"
+                                HorizontalAlignment="Center"
+                                Margin="5"/>
+            
+            <TextBlock Text="Cantidad (ml):" HorizontalAlignment="Center"
+                       Margin="0,5,0,0"/>
+            <Slider Width="100"/>
+            
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            
+            <Button Content="Aceptar"
+                    HorizontalContentAlignment="Center"
+                    Width="80"/>
+            
+            <Button Content="Cancelar"
+                    HorizontalContentAlignment="Center"
+                    Width="80"/>
+            
+        </StackPanel>
+        
+    </Grid>
+    
+</UserControl>

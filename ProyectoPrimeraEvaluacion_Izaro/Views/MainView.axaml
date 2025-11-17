@@ -1,0 +1,59 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:ProyectoPrimeraEvaluacion_Izaro.ViewModels"
+             xmlns:fa="using:FluentAvalonia.UI.Controls"
+             xmlns:viewModels="clr-namespace:ProyectoPrimeraEvaluacion.ViewModels"
+             x:Class="ProyectoPrimeraEvaluacion_Izaro.Views.MainView"
+             x:DataType="viewModels:MainViewModel">
+  
+    <Grid>
+        
+        <Grid 
+            IsVisible="{Binding !IsUserLoggedIn}" 
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Background="{DynamicResource ApplicationBackgroundBrush}">
+            
+            <StackPanel 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center">
+                
+                <TextBlock Text="Últimos usuarios" Margin="0,0,0,10" HorizontalAlignment="Center"/>
+                
+                <ListBox Height="200" Width="250"
+                         Margin="0,0,0,0" Name="ListBoxUsuarios">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Image/>
+                                <TextBlock Text=""/>
+                                <TextBlock Text=""/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                
+                <Button Content="Login / Registro"
+                        Command="{Binding GoogleAuthCommand}"
+                        HorizontalAlignment="Center"
+                        Margin="20"
+                />
+            
+            </StackPanel>
+        
+        </Grid>
+        
+        <fa:NavigationView 
+            IsVisible="{Binding IsUserLoggedIn}" 
+            PaneDisplayMode="Left" 
+            CompactPaneLength="48"
+            OpenPaneLength="256"
+            SelectedItem="{Binding NavigationService.SelectedMenuItem}"
+            MenuItemsSource="{Binding NavigationService.Items}"
+        >
+            <ContentControl Content="{Binding NavigationService.CurrentView}"/>
+        </fa:NavigationView>
+        
+    </Grid>
+    
+</UserControl>
