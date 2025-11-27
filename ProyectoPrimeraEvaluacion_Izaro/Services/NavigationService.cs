@@ -2,10 +2,10 @@ using System.Collections.ObjectModel;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using FluentAvalonia.UI.Controls;
-using ProyectoPrimeraEvaluacion.ViewModels;
-using ProyectoPrimeraEvaluacion.Views;
+using ProyectoPrimeraEvaluacion_Izaro.ViewModels;
+using ProyectoPrimeraEvaluacion_Izaro.Views;
 
-namespace ProyectoPrimeraEvaluacion.Services;
+namespace ProyectoPrimeraEvaluacion_Izaro.Services;
 
 public partial class NavigationService : ObservableObject
 {
@@ -79,7 +79,11 @@ public partial class NavigationService : ObservableObject
         }
         else if (tag.Equals(CONSULT_VIEW))
         {
-            
+            CurrentView = new ConsultPerfumesView
+            {
+                DataContext = new ConsultPerfumesViewModel(this)
+            };
+            SelectedMenuItem = createItem;
         }
     }
 }

@@ -1,10 +1,12 @@
 using System;
+using CommunityToolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
 
 namespace ProyectoPrimeraEvaluacion_Izaro.Models;
 
-public class ProductModel
+public partial class ProductModel : ObservableObject
 {
+    
     [JsonProperty("id", DefaultValueHandling = DefaultValueHandling.Ignore)]
     public string Id { get; set; }
     

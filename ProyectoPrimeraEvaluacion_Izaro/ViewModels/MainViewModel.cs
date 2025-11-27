@@ -3,12 +3,11 @@ using System.Threading.Tasks;
 using Avalonia.Collections;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using ProyectoPrimeraEvaluacion.Services;
 using ProyectoPrimeraEvaluacion_Izaro.Data;
 using ProyectoPrimeraEvaluacion_Izaro.Models;
 using ProyectoPrimeraEvaluacion_Izaro.Services;
 
-namespace ProyectoPrimeraEvaluacion.ViewModels;
+namespace ProyectoPrimeraEvaluacion_Izaro.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {
@@ -20,6 +19,11 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty] private NavigationService navigationService=new();
     
     private APIService apiService { get; set; } = new();
+
+    public MainViewModel()
+    {
+        ObtenerUsuariosAsync();
+    }
     
 
     [RelayCommand]
@@ -100,6 +104,7 @@ public partial class MainViewModel : ObservableObject
         ImageUrl = usuario.ImageUrl;
 
     }
+    
 
     [RelayCommand]
     public async Task LoginUsuarioAsync(Usuario user)
@@ -111,8 +116,6 @@ public partial class MainViewModel : ObservableObject
             ImageUrl = usuario.ImageUrl;
             ListaUsuarios = await new DBService().ObtenerTodosLosUsuarios();
             IsLogeado = true;
-            
-            
         }
         else
         {

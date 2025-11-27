@@ -1,7 +1,6 @@
-using ProyectoPrimeraEvaluacion_Izaro.ViewModels;
-using ProyectoPrimeraEvaluacion.Services;
+using ProyectoPrimeraEvaluacion_Izaro.Services;
 
-namespace ProyectoPrimeraEvaluacion.ViewModels;
+namespace ProyectoPrimeraEvaluacion_Izaro.ViewModels;
 
 
 public partial class HomeViewModel : ViewModelBase

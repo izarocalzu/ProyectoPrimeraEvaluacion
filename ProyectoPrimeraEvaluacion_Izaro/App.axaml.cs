@@ -6,8 +6,8 @@ using System.Linq;
 using Avalonia.Markup.Xaml;
 using ProyectoPrimeraEvaluacion_Izaro.ViewModels;
 using ProyectoPrimeraEvaluacion_Izaro.Views;
-using ProyectoPrimeraEvaluacion.Services;
-using ProyectoPrimeraEvaluacion.ViewModels;
+using ProyectoPrimeraEvaluacion_Izaro.Services;
+using ProyectoPrimeraEvaluacion_Izaro.ViewModels;
 
 namespace ProyectoPrimeraEvaluacion_Izaro;
 

@@ -1,0 +1,44 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:ProyectoPrimeraEvaluacion_Izaro.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ProyectoPrimeraEvaluacion_Izaro.Views.ConsultPerfumesView"
+             x:DataType="viewModels:ConsultPerfumesViewModel">
+    
+    <Design.DataContext>
+        <viewModels:ConsultPerfumesViewModel />
+    </Design.DataContext>
+    
+    <Grid RowDefinitions="100,*">
+        
+        <TextBlock Text="LISTA DE PRODUCTOS"
+                   FontSize="20"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+        
+        <Grid Grid.Row="1" ColumnDefinitions="300,*">
+            
+            <StackPanel Grid.Column="0">
+                
+                <!--<ListBox ItemsSource="{Binding ListaProductos}"
+                         Height="200" Width="250"
+                         Margin="0,0,0,0" Name="ListBoxProductos">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Nombre}"/>
+                                <TextBlock Text="{Binding Email}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>-->
+                
+            </StackPanel>
+            
+        </Grid>
+        
+    </Grid>
+    
+</UserControl>

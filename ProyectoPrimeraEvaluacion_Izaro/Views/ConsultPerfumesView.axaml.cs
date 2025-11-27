@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace ProyectoPrimeraEvaluacion_Izaro.Views;
 
-public partial class HomeView : UserControl
+public partial class ConsultPerfumesView : UserControl
 {
-    public HomeView()
+    public ConsultPerfumesView()
     {
         InitializeComponent();
     }
