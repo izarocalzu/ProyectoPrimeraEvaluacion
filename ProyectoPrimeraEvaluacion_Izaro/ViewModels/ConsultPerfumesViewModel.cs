@@ -13,19 +13,20 @@ public partial class ConsultPerfumesViewModel : ViewModelBase
     
     [ObservableProperty] private AvaloniaList<ProductModel> listaProductos;
     
+    [ObservableProperty] private ProductModel selectedProduct;
+    
     private APIService apiService { get; set; } = new();
-
-    public ConsultPerfumesViewModel()
-    {
-        
-    }
     
     public ConsultPerfumesViewModel(NavigationService navigationService)
     {
         _navigationService = navigationService;
     }
+
+    public ConsultPerfumesViewModel()
+    {
+        ObtenerProductosAsync();
+    }
     
-    [RelayCommand]
     public async Task ObtenerProductosAsync()
     {
         ListaProductos = await apiService.ObtenerProductos();

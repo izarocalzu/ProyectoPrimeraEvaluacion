@@ -83,7 +83,7 @@ public partial class NavigationService : ObservableObject
             {
                 DataContext = new ConsultPerfumesViewModel(this)
             };
-            SelectedMenuItem = createItem;
+            SelectedMenuItem = consultItem;
         }
     }
 }
