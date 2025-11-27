@@ -11,30 +11,57 @@
         <viewModels:ConsultPerfumesViewModel />
     </Design.DataContext>
     
-    <Grid RowDefinitions="100,*">
+    <Grid RowDefinitions="100,*" >
         
-        <TextBlock Text="LISTA DE PRODUCTOS"
-                   FontSize="20"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
+        <TextBlock Text="LISTA PRODUCTOS"
+                   Grid.Row="0"
+                   FontSize="28"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Margin="20,0,0,0"/>
         
-        <Grid Grid.Row="1" ColumnDefinitions="300,*">
+        <Grid Grid.Row="1" ColumnDefinitions="*, 150">
             
             <StackPanel Grid.Column="0">
                 
-                <!--<ListBox ItemsSource="{Binding ListaProductos}"
-                         Height="200" Width="250"
-                         Margin="0,0,0,0" Name="ListBoxProductos">
+                <ListBox ItemsSource="{Binding ListaProductos}"
+                         SelectedItem="{Binding }"
+                         VerticalAlignment="Stretch"
+                         HorizontalAlignment="Stretch"
+                         Height="400" Margin="10">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding Nombre}"/>
-                                <TextBlock Text="{Binding Email}"/>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Código: " FontWeight="SemiBold"/>
+                                <TextBlock Text="{Binding Code}"/>
+                                <TextBlock Text=" / Descripción: " FontWeight="SemiBold"/>
+                                <TextBlock Text="{Binding Brand}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                </ListBox>-->
+                </ListBox>
                 
+            </StackPanel>
+            
+            <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,10,20,10" Spacing="15">
+                
+                <Button Content="Volver"
+                        Command="{Binding }"
+                        HorizontalAlignment="Stretch"
+                        Height="35"/>
+                
+                <Button Content="Eliminar"
+                        Command="{Binding }"
+                        HorizontalAlignment="Stretch"
+                        Height="35"/>
+                
+                <Button Content="Editar"
+                        Command="{Binding }"
+                        CommandParameter="{Binding }"
+                        HorizontalAlignment="Stretch"
+                        Height="35"/>
+
             </StackPanel>
             
         </Grid>

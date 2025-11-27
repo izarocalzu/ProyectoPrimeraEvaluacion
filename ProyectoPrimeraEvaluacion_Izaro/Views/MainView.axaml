@@ -6,47 +6,63 @@
              xmlns:viewModels="clr-namespace:ProyectoPrimeraEvaluacion_Izaro.ViewModels"
              x:Class="ProyectoPrimeraEvaluacion_Izaro.Views.MainView"
              x:DataType="viewModels:MainViewModel">
-  
+
     <Grid>
-        
+
         <Grid IsVisible="{Binding !IsLogeado}"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            Background="{DynamicResource ApplicationBackgroundBrush}">
+              Background="#F5F5F5">
             
-            <StackPanel 
-                HorizontalAlignment="Center" 
+            <StackPanel
+                HorizontalAlignment="Center"
                 VerticalAlignment="Center">
-                
-                <TextBlock Text="Últimos usuarios" Margin="0,0,0,10" HorizontalAlignment="Center"/>
+
+                <TextBlock Text="Últimos usuarios"
+                           Margin="0,0,0,15"
+                           HorizontalAlignment="Center"
+                           FontSize="18"
+                           FontWeight="SemiBold"
+                           Foreground="#D49DB7" />
                 
                 <ListBox ItemsSource="{Binding ListaUsuarios}"
                          Height="200" Width="250"
-                         Margin="0,0,0,0" Name="ListBoxUsuarios">
+                         Name="ListBoxUsuarios"
+                         Background="Black"
+                         BorderThickness="2"
+                         BorderBrush="#F7E6EF">
+                    
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
                                 <Image asyncImageLoader:ImageLoader.Source="{Binding ImageUrl}"
                                        Width="50"
-                                       Height="50"/>
-                                <TextBlock Text="{Binding Nombre}"/>
-                                <TextBlock Text="{Binding Email}"/>
+                                       Height="50">
+                                </Image>
+
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Nombre}" FontWeight="Medium" FontSize="14" />
+                                    <TextBlock Text="{Binding Email}" FontSize="12" Foreground="#888888" />
+                                </StackPanel>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                
+
                 <Button Content="Login / Registro"
                         Command="{Binding LoginUsuarioCommand}"
                         CommandParameter="{Binding ElementName= ListBoxUsuarios, Path=SelectedItem}"
                         HorizontalAlignment="Center"
-                        Margin="20"
-                />
-            
+                        VerticalContentAlignment="Center"
+                        Height="35"
+                        Margin="25"
+                        Background="#D49DB7"
+                        CornerRadius="5"
+                        FontSize="16"
+                        FontWeight="Bold" />
+
             </StackPanel>
-        
+
         </Grid>
-    
+
         <fa:NavigationView PaneDisplayMode="Left"
                            IsVisible="{Binding IsLogeado}"
                            PaneTitle="Menú"
@@ -54,7 +70,7 @@
                            MenuItemsSource="{Binding NavigationService.Items}">
             <ContentControl Content="{Binding NavigationService.CurrentView}" />
         </fa:NavigationView>
-        
+
     </Grid>
-    
+
 </UserControl>
