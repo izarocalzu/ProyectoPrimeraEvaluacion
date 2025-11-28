@@ -16,6 +16,7 @@
     <PackageVersion Include="Avalonia.Browser" Version="11.3.6" />
     <PackageVersion Include="Avalonia.Android" Version="11.3.6" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageVersion Include="DialogHost.Avalonia" Version="0.10.2" />
     <PackageVersion Include="Duende.IdentityModel.OidcClient" Version="6.0.1" />
     <PackageVersion Include="FluentAvaloniaUI" Version="2.4.1" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.10" />

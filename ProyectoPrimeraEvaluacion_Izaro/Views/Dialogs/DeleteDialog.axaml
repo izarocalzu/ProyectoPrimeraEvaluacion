@@ -1,0 +1,58 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:ProyectoPrimeraEvaluacion_Izaro.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="200"
+             x:Class="ProyectoPrimeraEvaluacion_Izaro.Views.Dialogs.DeleteDialog"
+             x:DataType="vm:ConsultPerfumesViewModel">
+
+    <Design.DataContext>
+        <vm:ConsultPerfumesViewModel />
+    </Design.DataContext>
+    
+    <Grid RowDefinitions="75, 50, *">
+        
+        <StackPanel Background="#D49DB7"/>
+
+        <StackPanel VerticalAlignment="Center">
+
+            <TextBlock Text="Atención"
+                       FontSize="25"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center" />
+            
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+
+            <TextBlock Text="¿Eliminar?"
+                       Margin="25"
+                       FontSize="18"
+                       HorizontalAlignment="Center" />
+            
+        </StackPanel>
+        
+        <StackPanel Grid.Row="2" Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            
+            <Button Content="ACEPTAR"
+                    Background="#D49DB7"
+                    Foreground="Black"
+                    FontSize="16"
+                    Width="120"
+                    Margin="0,0,5,0"/>
+
+            <Button Content="CANCELAR"
+                    Background="#F5F5F5"
+                    Foreground="Black"
+                    FontSize="16"
+                    Width="120"
+                    Margin="5,0,0,0"/>
+            
+        </StackPanel>
+        
+    </Grid>
+
+
+</UserControl>

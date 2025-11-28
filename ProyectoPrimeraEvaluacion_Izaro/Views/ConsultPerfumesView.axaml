@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:ProyectoPrimeraEvaluacion_Izaro.ViewModels"
+             xmlns:dialogHostAvalonia="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ProyectoPrimeraEvaluacion_Izaro.Views.ConsultPerfumesView"
              x:DataType="viewModels:ConsultPerfumesViewModel">
@@ -12,6 +13,14 @@
     </Design.DataContext>
     
     <Grid RowDefinitions="100,*" >
+        
+        <dialogHostAvalonia:DialogHost Identifier="DeleteDialog"
+                                       CloseOnClickAway="False"
+                                       Grid.ColumnSpan="2"
+                                       Grid.RowSpan="2"
+                                       ZIndex="3">
+            <dialogHostAvalonia:DialogHost.Content />
+        </dialogHostAvalonia:DialogHost>
         
         <TextBlock Text="LISTA PRODUCTOS"
                    Grid.Row="0"
@@ -52,10 +61,18 @@
                         HorizontalAlignment="Stretch"
                         Height="35"/>
                 
+                
+                
                 <Button Content="Eliminar"
-                        Command="{Binding }"
+                        Command="{Binding OpenDeleteDialogCommand}"
                         HorizontalAlignment="Stretch"
                         Height="35"/>
+                
+                <dialogHostAvalonia:DialogHost Identifier="EntrantesDialog"
+                                               CloseOnClickAway="False"
+                                               ZIndex="3">
+                    <dialogHostAvalonia:DialogHost.Content />
+                </dialogHostAvalonia:DialogHost>
                 
                 <Button Content="Editar"
                         Command="{Binding }"

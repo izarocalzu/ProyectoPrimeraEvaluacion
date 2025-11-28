@@ -21,6 +21,7 @@
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
         </PackageReference>
         <PackageReference Include="CommunityToolkit.Mvvm"/>
+        <PackageReference Include="DialogHost.Avalonia" />
         <PackageReference Include="Duende.IdentityModel.OidcClient" />
         <PackageReference Include="FluentAvaloniaUI" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" />

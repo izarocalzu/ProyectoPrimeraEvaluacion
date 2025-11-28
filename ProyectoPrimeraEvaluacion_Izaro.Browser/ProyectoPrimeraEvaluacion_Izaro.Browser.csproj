@@ -9,6 +9,7 @@
     <ItemGroup>
         <PackageReference Include="AsyncImageLoader.Avalonia" />
         <PackageReference Include="Avalonia.Browser"/>
+        <PackageReference Include="DialogHost.Avalonia" />
     </ItemGroup>
 
     <ItemGroup>

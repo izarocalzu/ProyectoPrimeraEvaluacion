@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -15,7 +16,7 @@ public partial class CreatePerfumeViewModel : ViewModelBase
     private APIService apiService { get; set; } = new();
     
     [ObservableProperty] private ObservableCollection<string> marcasList = new();
-    [ObservableProperty] private ObservableCollection<ProductModel> productos =new();
+    [ObservableProperty] private ObservableCollection<ProductModel> productos = new();
 
     [ObservableProperty] private string productCode;
     [ObservableProperty] private string productDescription;
@@ -34,11 +35,11 @@ public partial class CreatePerfumeViewModel : ViewModelBase
     {
         var perfume = new ProductModel()
         {
-            Code = "123456785",
-            Description = "Gris",
-            Brand = "Dior",
-            Volume = 11.0m,
-            IsLimited = false,
+            Code = ProductCode,
+            Description = ProductDescription,
+            Brand = SelectedBrand,
+            IsLimited = IsLimitedEdition,
+            Volume = 11,
             CreationDate = DateTime.Today
         };
         await apiService.CrearProducto(perfume);
