@@ -49,7 +49,7 @@ public partial class CreatePerfumeViewModel : ViewModelBase
     }*/
     
     [RelayCommand]
-    public async Task CreateNewPerfumeAsync()
+    public async Task CreateNewPerfumeAsync(string tag_view)
     {
         var perfume = new ProductModel()
         {
@@ -65,12 +65,19 @@ public partial class CreatePerfumeViewModel : ViewModelBase
         {
             await apiService.CrearProducto(perfume); 
             Console.WriteLine("Perfume creado con éxito. Por favor, pulsa 'Actualizar Lista' para verlo.");
-         
+            ProductCode = string.Empty;
+            ProductDescription = string.Empty;
+            SelectedBrand = null;
+            IsLimitedEdition = false;
+            VolumeValue = 0.0;
+            CreationDate = DateTime.Today;
         }
         catch (Exception ex)
         {
             Console.WriteLine("¡ERROR! No se pudo crear el perfume. Revisa los datos. Mensaje de error: " + ex.Message);
         }
+        
+        _navigationService.NavigateTo(tag_view);
     }
     
     [RelayCommand]

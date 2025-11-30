@@ -105,6 +105,7 @@
 
             <Button Content="Aceptar"
                     Command="{Binding CreateNewPerfumeCommand}"
+                    CommandParameter="consult"
                     HorizontalContentAlignment="Center"
                     FontSize="20"
                     Width="150" Height="45"

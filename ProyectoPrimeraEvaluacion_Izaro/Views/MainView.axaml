@@ -27,7 +27,7 @@
                          Height="200" Width="250"
                          Name="ListBoxUsuarios"
                          Background="Black"
-                         BorderThickness="2"
+                         BorderThickness="3"
                          BorderBrush="#F7E6EF">
 
                     <ListBox.ItemTemplate>
@@ -39,8 +39,13 @@
                                 </Image>
 
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding Nombre}" FontWeight="Medium" FontSize="14" />
-                                    <TextBlock Text="{Binding Email}" FontSize="12" Foreground="#888888" />
+                                    <TextBlock Text="{Binding Nombre}"
+                                               FontWeight="Medium"
+                                               FontSize="14"
+                                               Foreground="White" />
+                                    <TextBlock Text="{Binding Email}"
+                                               FontSize="12"
+                                               Foreground="#888888" />
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
@@ -72,7 +77,6 @@
             <fa:NavigationView.FooterMenuItems>
                 <fa:NavigationViewItem
                     Content="Cerrar Sesión"
-                    IconSource="{StaticResource GearIcon}"
                     Tag="logout"/>
             </fa:NavigationView.FooterMenuItems>
             <ContentControl Content="{Binding NavigationService.CurrentView}" />

@@ -85,6 +85,10 @@ public partial class ConsultPerfumesViewModel : ViewModelBase
         {
             Console.WriteLine("Error al eliminar producto. " + ex.Message);
         }
+        finally
+        {
+            DialogHost.Close("DeleteDialog");
+        }
     }
     
     [RelayCommand]

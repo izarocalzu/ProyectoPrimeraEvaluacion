@@ -92,7 +92,7 @@ public class APIService
 
     public async Task<AvaloniaList<ProductModel>> ObtenerProductos()
     {
-        var request = new HttpRequestMessage(HttpMethod.Get, TABLE_ENDPOINT); // Usamos el nuevo endpoint
+        var request = new HttpRequestMessage(HttpMethod.Get, TABLE_ENDPOINT);
         var response = await client.SendAsync(request);
 
         if (!response.IsSuccessStatusCode)
