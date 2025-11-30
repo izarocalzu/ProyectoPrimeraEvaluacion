@@ -26,10 +26,8 @@ public partial class CreatePerfumeViewModel : ViewModelBase
     [ObservableProperty] private DateTime creationDate = DateTime.Today;
     [ObservableProperty] private double volumeValue = 100.0;
     
-    
-    // ELIMINADO: [ObservableProperty] private Perfumes perfumesModel = new();
-    // ELIMINADO: [ObservableProperty] private ProductModel perfume = new();
-    
+    //[ObservableProperty] private Perfumes perfumesModel = new();
+    //[ObservableProperty] private ProductModel perfume = new();
 
     [ObservableProperty] private ProductModel selectedProduct;
 
@@ -46,7 +44,7 @@ public partial class CreatePerfumeViewModel : ViewModelBase
 
     /*private void LoadPerfumes()
     {
-        ProductModel p = new ProductModel(1,"1","Hola","Tecnologia", 100.0m, true, DateTime.Now);
+        ProductModel p = new ProductModel(1,"1","Hola","Dior", 100.0m, true, DateTime.Now);
         this.PerfumesModel.productosList.Add(p);
     }*/
     

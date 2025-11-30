@@ -96,15 +96,6 @@ public partial class MainViewModel : ObservableObject
         ListaUsuarios = await new DBService().ObtenerTodosLosUsuarios();
     }
 
-    [RelayCommand]
-    public async Task RegisterUserAsync()
-    {
-        var authservice = new GoogleAuthService();
-        Usuario usuario = await authservice.LoginAsync(new Usuario());
-        ImageUrl = usuario.ImageUrl;
-
-    }
-    
 
     [RelayCommand]
     public async Task LoginUsuarioAsync(Usuario user)
@@ -125,4 +116,6 @@ public partial class MainViewModel : ObservableObject
             IsLogeado = true;
         }
     }
+    
+    
 }

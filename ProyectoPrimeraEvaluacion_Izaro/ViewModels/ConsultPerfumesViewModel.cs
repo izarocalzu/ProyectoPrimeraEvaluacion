@@ -65,6 +65,29 @@ public partial class ConsultPerfumesViewModel : ViewModelBase
     }
     
     [RelayCommand]
+    public async Task DeletePerfumeAsync(ProductModel p)
+    {
+        if (p == null)
+        {
+            Console.WriteLine("No has seleccionado nada.");
+            return;
+        }
+
+        try
+        {
+            bool okEliminar = await apiService.EliminarProducto(p);
+            if (okEliminar)
+            {
+                await ObtenerProductosAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error al eliminar producto. " + ex.Message);
+        }
+    }
+    
+    [RelayCommand]
     public void CloseDeleteDialog()
     {
         DialogHost.Close("DeleteDialog");
@@ -108,6 +131,12 @@ public partial class ConsultPerfumesViewModel : ViewModelBase
     public void CloseEditDialog()
     {
         DialogHost.Close("EditDialog");
+    }
+
+    [RelayCommand]
+    public void NavigateTo(string tag_view)
+    {
+        _navigationService.NavigateTo(tag_view);
     }
     
     public void LoadMarcas()

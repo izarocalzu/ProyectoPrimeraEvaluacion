@@ -11,7 +11,7 @@
 
         <Grid IsVisible="{Binding !IsLogeado}"
               Background="#F5F5F5">
-            
+
             <StackPanel
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center">
@@ -22,14 +22,14 @@
                            FontSize="18"
                            FontWeight="SemiBold"
                            Foreground="#D49DB7" />
-                
+
                 <ListBox ItemsSource="{Binding ListaUsuarios}"
                          Height="200" Width="250"
                          Name="ListBoxUsuarios"
                          Background="Black"
                          BorderThickness="2"
                          BorderBrush="#F7E6EF">
-                    
+
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Spacing="10">
@@ -65,9 +65,16 @@
 
         <fa:NavigationView PaneDisplayMode="Left"
                            IsVisible="{Binding IsLogeado}"
+                           IsSettingsVisible="False"
                            PaneTitle="Menú"
                            SelectedItem="{Binding NavigationService.SelectedMenuItem}"
                            MenuItemsSource="{Binding NavigationService.Items}">
+            <fa:NavigationView.FooterMenuItems>
+                <fa:NavigationViewItem
+                    Content="Cerrar Sesión"
+                    IconSource="{StaticResource GearIcon}"
+                    Tag="logout"/>
+            </fa:NavigationView.FooterMenuItems>
             <ContentControl Content="{Binding NavigationService.CurrentView}" />
         </fa:NavigationView>
 

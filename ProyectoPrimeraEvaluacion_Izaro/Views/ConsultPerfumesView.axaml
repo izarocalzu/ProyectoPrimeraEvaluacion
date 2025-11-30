@@ -5,6 +5,7 @@
              xmlns:viewModels="clr-namespace:ProyectoPrimeraEvaluacion_Izaro.ViewModels"
              xmlns:dialogHostAvalonia="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
              xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ProyectoPrimeraEvaluacion_Izaro.Views.ConsultPerfumesView"
              x:DataType="viewModels:ConsultPerfumesViewModel">
@@ -14,14 +15,6 @@
     </Design.DataContext>
 
     <Grid RowDefinitions="100,*" Name="PerfumesElements">
-
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#FDDCDC" Offset="0.0" />
-                <GradientStop Color="#EADFFD" Offset="0.5" />
-                <GradientStop Color="#F4CCCC" Offset="1.0" />
-            </LinearGradientBrush>
-        </Grid.Background>
 
         <dialogHostAvalonia:DialogHost Identifier="DeleteDialog"
                                        CloseOnClickAway="False"
@@ -46,7 +39,7 @@
                                    Height="32"
                                    Foreground="#5A4D59" />
             <TextBlock Text="PERFUMES"
-                       FontSize="32"
+                       FontSize="40"
                        FontWeight="Bold"
                        Foreground="#5A4D59" />
         </StackPanel>
@@ -73,16 +66,33 @@
 
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Spacing="8" Margin="5">
-                                <TextBlock Text="Código:" FontWeight="SemiBold" Foreground="#5A4D59" />
-                                <TextBlock Text="{Binding Code}" Foreground="#5A4D59" />
-                                <TextBlock Text="–" Foreground="#5A4D59" />
-                                <TextBlock Text="{Binding Description}" Foreground="#5A4D59" />
-                                <TextBlock Text="–" Foreground="#5A4D59" />
-                                <TextBlock Text="{Binding Brand}" Foreground="#5A4D59" />
-                                <TextBlock Text="–" Foreground="#5A4D59" />
-                                <TextBlock Text="{Binding Volume}" Foreground="#5A4D59" />
-                                <TextBlock Text="ml" Foreground="#5A4D59" />
+                            <StackPanel Orientation="Horizontal" Spacing="8" Height="100">
+                                <Image Width="80" Height="80"
+                                       asyncImageLoader:ImageLoader.Source="https://png.pngtree.com/png-clipart/20230508/original/pngtree-perfume-flat-icon-png-image_9149322.png" />
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+
+                                    <StackPanel Orientation="Horizontal" Margin="5">
+                                        <TextBlock Text="Código: " FontWeight="SemiBold" Foreground="#5A4D59"
+                                                   FontSize="20" />
+                                        <TextBlock Text="{Binding Code}" Foreground="#5A4D59" FontSize="20" />
+                                        
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                                        <TextBlock Text="Marca: " FontWeight="SemiBold" Foreground="#5A4D59"
+                                                   FontSize="20" />
+                                        <TextBlock Text="{Binding Brand}" Foreground="#5A4D59" FontSize="20" />
+                                        <TextBlock Text=" – " Foreground="#5A4D59" FontSize="20" />
+                                        <TextBlock Text="{Binding Description}" Foreground="#5A4D59" FontSize="20" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="5">
+                                        <TextBlock Text="Volumen: " FontWeight="SemiBold" Foreground="#5A4D59"
+                                                   FontSize="20" />
+                                        <TextBlock Text="{Binding Volume}" Foreground="#5A4D59" FontSize="20" />
+                                        <TextBlock Text="ml" Foreground="#5A4D59" FontSize="20" />
+                                    </StackPanel>
+                                </StackPanel>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -91,6 +101,19 @@
             </Grid>
 
             <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,15,20,10" Spacing="15">
+
+                <Button Content="Volver"
+                        Command="{Binding NavigateToCommand}"
+                        CommandParameter="home"
+                        HorizontalAlignment="Stretch"
+                        Height="38"
+                        Background="#E57F90"
+                        Foreground="#FDFDFD"
+                        BorderBrush="#D4A0A7"
+                        BorderThickness="1"
+                        CornerRadius="5"
+                        FontWeight="SemiBold"
+                        FontSize="16" />
 
                 <Button Content="Eliminar"
                         Command="{Binding OpenDeleteDialogCommand}"
@@ -103,12 +126,6 @@
                         CornerRadius="5"
                         FontWeight="SemiBold"
                         FontSize="16" />
-
-                <dialogHostAvalonia:DialogHost Identifier="EntrantesDialog"
-                                               CloseOnClickAway="False"
-                                               ZIndex="3">
-                    <dialogHostAvalonia:DialogHost.Content />
-                </dialogHostAvalonia:DialogHost>
 
                 <Button Content="Editar"
                         Command="{Binding OpenEditDialogCommand}"

@@ -43,7 +43,8 @@
                     HorizontalAlignment="Center">
             
             <Button Content="ACEPTAR"
-                    Command="{Binding}"
+                    Command="{Binding DeletePerfumeCommand}"
+                    CommandParameter="{Binding SelectedProduct}"
                     Background="#D49DB7"
                     Foreground="Black"
                     FontSize="16"
