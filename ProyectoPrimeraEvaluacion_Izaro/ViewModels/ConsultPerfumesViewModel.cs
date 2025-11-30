@@ -1,3 +1,5 @@
+using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Avalonia.Collections;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -14,10 +16,15 @@ namespace ProyectoPrimeraEvaluacion_Izaro.ViewModels;
 public partial class ConsultPerfumesViewModel : ViewModelBase
 {
     private NavigationService _navigationService;
+    
+    [ObservableProperty] private ProductModel productModel = new();
 
     [ObservableProperty] private AvaloniaList<ProductModel> listaProductos;
+    
+    [ObservableProperty] private ObservableCollection<string> marcasList = new();
 
     [ObservableProperty] private ProductModel selectedProduct;
+    [ObservableProperty] private bool isLimited = false;
 
     private APIService apiService { get; set; } = new();
 
@@ -29,11 +36,24 @@ public partial class ConsultPerfumesViewModel : ViewModelBase
     public ConsultPerfumesViewModel()
     {
         ObtenerProductosAsync();
+        LoadMarcas();
+    }
+    
+    [RelayCommand]
+    public async Task ActualizarProductosAsync()
+    {
+        await ObtenerProductosAsync(); 
     }
 
     public async Task ObtenerProductosAsync()
     {
         ListaProductos = await apiService.ObtenerProductos();
+    }
+    
+    [RelayCommand]
+    public void LoadPerfumeSelected()
+    {
+        ProductModel = new ProductModel(SelectedProduct);
     }
 
     [RelayCommand]
@@ -43,4 +63,63 @@ public partial class ConsultPerfumesViewModel : ViewModelBase
         //entrantesDialog.DataContext = new PizzaViewModel();
         DialogHost.Show(deleteDialog, "DeleteDialog");
     }
+    
+    [RelayCommand]
+    public void CloseDeleteDialog()
+    {
+        DialogHost.Close("DeleteDialog");
+    }
+    
+    [RelayCommand]
+    public void OpenEditDialog()
+    {
+        EditDialog editDialog = new EditDialog();
+        editDialog.DataContext = selectedProduct;
+        DialogHost.Show(editDialog, "EditDialog");
+    }
+    
+    
+    [RelayCommand]
+    public async Task SaveEditAsync()
+    {
+        if (SelectedProduct == null) return;
+
+        try
+        {
+            bool exito = await apiService.ModificarProducto(SelectedProduct);
+        
+            if (exito)
+            {
+                Console.WriteLine("Perfume {SelectedProduct.Code} modificado con éxito.");
+                await ObtenerProductosAsync(); 
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error al guardar cambios: " + ex.Message);
+        }
+        finally
+        {
+            DialogHost.Close("EditDialog");
+        }
+    }
+    
+    [RelayCommand]
+    public void CloseEditDialog()
+    {
+        DialogHost.Close("EditDialog");
+    }
+    
+    public void LoadMarcas()
+    {
+        MarcasList.Add("Yves Saint Laurant");
+        MarcasList.Add("Dior");
+        MarcasList.Add("Narcisso Rodriguez");
+        MarcasList.Add("Carolina Herrera");
+        MarcasList.Add("Hugo Boss");
+        MarcasList.Add("Paco Rabanne");
+        MarcasList.Add("Pedro del Hierro");
+        MarcasList.Add("Jean Paul Gaultier");
+    }
+    
 }

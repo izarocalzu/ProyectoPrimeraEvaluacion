@@ -5,6 +5,7 @@
              xmlns:vm="clr-namespace:ProyectoPrimeraEvaluacion_Izaro.ViewModels"
              mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="200"
              x:Class="ProyectoPrimeraEvaluacion_Izaro.Views.Dialogs.DeleteDialog"
+             xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
              x:DataType="vm:ConsultPerfumesViewModel">
 
     <Design.DataContext>
@@ -22,6 +23,11 @@
                        FontWeight="Bold"
                        HorizontalAlignment="Center" />
             
+            <avalonia:MaterialIcon Kind="Warning"
+                                   Width="30"
+                                   Foreground="White"/>
+                
+            
         </StackPanel>
 
         <StackPanel Grid.Row="1" VerticalAlignment="Center">
@@ -37,6 +43,7 @@
                     HorizontalAlignment="Center">
             
             <Button Content="ACEPTAR"
+                    Command="{Binding}"
                     Background="#D49DB7"
                     Foreground="Black"
                     FontSize="16"
@@ -44,6 +51,7 @@
                     Margin="0,0,5,0"/>
 
             <Button Content="CANCELAR"
+                    Command="{Binding CloseDeleteDialogCommand}"
                     Background="#F5F5F5"
                     Foreground="Black"
                     FontSize="16"
